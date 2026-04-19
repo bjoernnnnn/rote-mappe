@@ -36,6 +36,10 @@ Der **Notfallakte Generator** führt den Nutzer schrittweise durch alle essenzie
 
 Am Ende des geführten Prozesses (Wizard) generiert die Anwendung ein übersichtliches, druckfertiges PDF-Dokument ("Die Rote Mappe"), welches als physischer Begleiter für den Notfall ausgedruckt und sicher hinterlegt werden kann.
 
+## 🧪 Ausprobieren (Dummy-Daten)
+
+Um die Anwendung schnell und unverbindlich zu testen, liegt dem Projekt die Datei `Muster_Notfallakte_Dummy_Daten.json` bei. Dabei handelt es sich um ein Demo-Backup mit fiktiven Beispieldaten (Familie Mustermann). Laden Sie diese Datei einfach über die Schaltfläche **"Bestehendes Backup laden"** auf der Startseite hoch, um die App direkt mit Daten zu füllen und sich sofort eine fertige Vorschau-PDF generieren zu lassen.
+
 ## 📸 Vorschau
 
 ![Startseite](Images/welcome.png)

@@ -100,44 +100,55 @@ export class PdfBuilder {
     // Create Chapter Cover Page
     const cover = this.pdfDoc.addPage([this.PAGE_WIDTH, this.PAGE_HEIGHT]);
     
+    const titleFont = this.templateName === 'modern' ? this.fontSerif : this.fontBold;
+    const titleLines = splitTextToLines(fullTitle, this.PAGE_WIDTH - 120, titleFont, 26);
+    
+    // Multi-line description for cover
+    const maxDescWidthChars = 65;
+    const descLines: string[] = [];
+    description.split('\n').forEach(line => {
+      let remaining = line;
+      while (remaining.length > 0) {
+        descLines.push(remaining.substring(0, maxDescWidthChars));
+        remaining = remaining.substring(maxDescWidthChars);
+      }
+    });
+
+    const contentHeight = (titleLines.length * 30) + 10 + (descLines.length * 20);
+    const rectHeight = Math.max(160, contentHeight + 60);
+
     cover.drawRectangle({
       x: 0,
-      y: this.PAGE_HEIGHT / 2 - 80,
+      y: this.PAGE_HEIGHT / 2 - (rectHeight / 2),
       width: this.PAGE_WIDTH,
-      height: 160,
+      height: rectHeight,
       color: this.config.colors.chapterCoverBg,
     });
     
-    const titleFont = this.templateName === 'modern' ? this.fontSerif : this.fontBold;
-    const titleLines = splitTextToLines(fullTitle, this.PAGE_WIDTH - 120, titleFont, 26);
-    let titleY = this.PAGE_HEIGHT / 2 + 20;
+    let currentContentY = this.PAGE_HEIGHT / 2 + (contentHeight / 2) - 26;
+
     titleLines.forEach(line => {
       cover.drawText(line, {
         x: 50,
-        y: titleY,
+        y: currentContentY,
         size: 26,
         font: titleFont,
         color: this.config.colors.chapterCoverText,
       });
-      titleY -= 30;
+      currentContentY -= 30;
     });
     
-    // Multi-line description for cover
-    const maxDescWidthChars = 65;
-    let descY = this.PAGE_HEIGHT / 2 - 20;
-    description.split('\n').forEach(line => {
-      let remaining = line;
-      while (remaining.length > 0) {
-        cover.drawText(remaining.substring(0, maxDescWidthChars), {
-          x: 50,
-          y: descY,
-          size: 14,
-          font: this.fontRegular,
-          color: this.config.colors.lightText,
-        });
-        remaining = remaining.substring(maxDescWidthChars);
-        descY -= 20;
-      }
+    currentContentY -= 10;
+
+    descLines.forEach(line => {
+      cover.drawText(line, {
+        x: 50,
+        y: currentContentY,
+        size: 14,
+        font: this.fontRegular,
+        color: this.config.colors.lightText,
+      });
+      currentContentY -= 20;
     });
     
     this.chapterIndex++;
