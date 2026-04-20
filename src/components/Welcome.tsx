@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { ShieldCheck, FileText, Download, Lock, Upload, Globe } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { ThemeToggle } from './ThemeToggle';
+import { version } from '../../package.json';
 
 interface BeforeInstallPromptEvent extends Event {
   readonly platforms: string[];
@@ -187,7 +188,7 @@ export function Welcome({ onStart }: WelcomeProps) {
           rel="noopener noreferrer" 
           className="text-xs text-slate-400 hover:text-indigo-600 dark:text-slate-500 dark:hover:text-indigo-400 transition-colors"
         >
-          v1.1.0
+          v{version}
         </a>
       </div>
     </div>
