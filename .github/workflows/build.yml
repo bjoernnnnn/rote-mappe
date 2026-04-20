@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: 📥 Repository auschecken
+      - name: 📥 Repo auschecken
         uses: actions/checkout@v4
 
       - name: 🟢 Node.js einrichten
@@ -19,8 +19,11 @@ jobs:
           node-version: 20
           cache: 'pnpm'
 
-      - name: 📦 pnpm installieren
-        run: npm install -g pnpm
+      - name: 📦 pnpm aktivieren
+        run: corepack enable
+
+      - name: 📦 pnpm vorbereiten
+        run: corepack prepare pnpm@latest --activate
 
       - name: 📦 Dependencies installieren
         run: pnpm install --frozen-lockfile
@@ -38,4 +41,3 @@ jobs:
         with:
           name: rote-mappe-build
           path: rote-mappe-build.zip
-          retention-days: 7
