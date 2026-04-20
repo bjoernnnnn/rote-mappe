@@ -19,14 +19,11 @@ jobs:
           node-version: 22
           cache: 'pnpm'
 
-      - name: 📦 Corepack aktivieren
-        run: corepack enable
-
-      - name: 📦 pnpm aktivieren (fix)
-        run: corepack prepare pnpm@latest --activate
-
-      - name: 🔍 pnpm Version prüfen
-        run: pnpm -v
+      - name: ⚙️ Corepack + pnpm aktivieren
+        run: |
+          corepack enable
+          corepack prepare pnpm@latest --activate
+          pnpm -v
 
       - name: 📦 Dependencies installieren
         run: pnpm install --frozen-lockfile
