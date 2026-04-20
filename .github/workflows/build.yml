@@ -16,14 +16,17 @@ jobs:
       - name: 🟢 Node.js einrichten
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 22
           cache: 'pnpm'
 
-      - name: 📦 pnpm aktivieren
+      - name: 📦 Corepack aktivieren
         run: corepack enable
 
-      - name: 📦 pnpm vorbereiten
+      - name: 📦 pnpm aktivieren (fix)
         run: corepack prepare pnpm@latest --activate
+
+      - name: 🔍 pnpm Version prüfen
+        run: pnpm -v
 
       - name: 📦 Dependencies installieren
         run: pnpm install --frozen-lockfile
