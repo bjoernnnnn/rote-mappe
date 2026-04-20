@@ -1,0 +1,41 @@
+name: Build rote-mappe
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 📥 Repository auschecken
+        uses: actions/checkout@v4
+
+      - name: 🟢 Node.js einrichten
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'pnpm'
+
+      - name: 📦 pnpm installieren
+        run: npm install -g pnpm
+
+      - name: 📦 Dependencies installieren
+        run: pnpm install --frozen-lockfile
+
+      - name: 🏗️ Build erstellen
+        run: pnpm build
+
+      - name: 📦 ZIP erstellen
+        run: |
+          cd dist
+          zip -r ../rote-mappe-build.zip .
+
+      - name: 📤 Artifact hochladen
+        uses: actions/upload-artifact@v4
+        with:
+          name: rote-mappe-build
+          path: rote-mappe-build.zip
+          retention-days: 7
