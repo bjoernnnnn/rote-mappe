@@ -11,6 +11,7 @@ All notable changes to this project will be documented in this file.
 - **PDF-Export (Verfügungen):** Platzhalter-Seiten (leere Seiten) für Standard-Verfügungen werden nun korrekt im PDF erstellt, wenn "Später als Kopie einheften" ausgewählt wurde.
 - **PDF-Export (Dokumente):** Platzhalter für Standard-Ausweise (z.B. Führerschein, Personalausweis) werden in der generierten PDF nun korrekt dargestellt.
 - **Docker:** Die npm Version wurde von 22 auf 24 korrigiert.
+- **Build Prozess:** Durch den import einer ungenutzen verweiß, ging der npm run build Prozesss nicht ordentlich druch.
 
 
 ## [1.0.0] - 2026-04-18
