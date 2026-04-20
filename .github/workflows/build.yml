@@ -17,19 +17,13 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 22
-          cache: 'pnpm'
-
-      - name: ⚙️ Corepack + pnpm aktivieren
-        run: |
-          corepack enable
-          corepack prepare pnpm@latest --activate
-          pnpm -v
+          cache: 'npm'
 
       - name: 📦 Dependencies installieren
-        run: pnpm install --frozen-lockfile
+        run: npm ci
 
       - name: 🏗️ Build erstellen
-        run: pnpm build
+        run: npm run build
 
       - name: 📦 ZIP erstellen
         run: |
