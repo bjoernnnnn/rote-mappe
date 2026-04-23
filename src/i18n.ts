@@ -58,9 +58,9 @@ const resources = {
         remove: "Dokument entfernen",
         customNamePlaceholder: "Name des Dokuments (z.B. Generalvollmacht)",
         whatToDo: "Wie möchten Sie mit diesem Dokument verfahren?",
-        actionUpload: "Scan jetzt hochladen (wird ins PDF integriert)",
+        actionUpload: "Scan jetzt hochladen (wird in das PDF integriert)",
         actionPlaceholder: "Später als Kopie einheften (erstellt leere Seite)",
-        actionSkip: "Nicht ins PDF aufnehmen",
+        actionSkip: "Nicht in das PDF aufnehmen",
         selectFile: "Datei auswählen (PNG/JPG/PDF)",
         success: "✓ Datei erfolgreich geladen",
         removeLink: "Entfernen"
