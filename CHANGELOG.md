@@ -2,17 +2,27 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.2.0] - 2026-04-22
+
+### Changed
+- **Automatisierte Versionierung:** Die Versionsnummer der App wird nun beim Build-Prozess direkt und automatisch aus der `package.json` ausgelesen und über die Vite-Konfiguration (`import.meta.env`) im Frontend bereitgestellt. Dadurch muss die Version bei einem neuen Release nicht mehr manuell im Code nachgezogen werden. Danke für diesen hilfreichen Beitrag an [@LucaNerlich]!
+- **Port-Konfiguration:** Der Standard-Port von Vite kann nun über die Umgebungsvariable `PORT` flexibel überschrieben werden und lauscht standardmäßig auf allen Netzwerk-Schnittstellen (`host: true`). Danke für diesen hilfreichen Beitrag an [@LucaNerlich]!
+- **Docker & Sicherheit:** Optimierung des Docker-Setups durch Hinzufügen einer `.dockerignore` und Dockerfile-Caching. Um die Ausführung als Root-Benutzer zu vermeiden, wurde auf das Image `nginxinc/nginx-unprivileged:stable-alpine` gewechselt. Zudem wurde ein Docker Healthcheck implementiert (Merge Request #2). Danke für diesen hilfreichen Beitrag an [@LucaNerlich]!
+
+
 ## [1.1.0] - 2026-04-20
 
 ### Added
 - **Hilfreiche Links & Vorlagen:** Neue Informationsboxen im Bereich "Vollmachten & Verfügungen" mit direkten Links zu offiziellen Vorlagen (BMJV, Verbraucherzentrale, Friedhofsverband Sauerland). Danke für den Tipp an klotzbrocken.
+- **App-Version:** Die aktuelle Versionsnummer (v1.1.0) wird nun dezent am Ende der Startseite angezeigt und verlinkt direkt zum GitHub-Repository. Ebenfalls in der package.json
+- **Dummy-Daten:** Die Datei `Muster_Notfallakte_Dummy_Daten.json` wurde um die neuen Standard-Dokumente und -Verfügungen (Geburtsurkunde, Patientenverfügung etc.) erweitert, um die Platzhalter-Funktion direkt demonstrieren zu können.
+
 
 ### Fixed
 - **PDF-Export (Verfügungen):** Platzhalter-Seiten (leere Seiten) für Standard-Verfügungen werden nun korrekt im PDF erstellt, wenn "Später als Kopie einheften" ausgewählt wurde.
 - **PDF-Export (Dokumente):** Platzhalter für Standard-Ausweise (z.B. Führerschein, Personalausweis) werden in der generierten PDF nun korrekt dargestellt.
 - **Docker:** Die npm Version wurde von 22 auf 24 korrigiert.
 - **Build Prozess:** Durch den import einer ungenutzen verweiß, ging der npm run build Prozesss nicht ordentlich druch.
-
 
 ## [1.0.0] - 2026-04-18
 
