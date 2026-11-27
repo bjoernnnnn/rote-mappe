@@ -4,6 +4,7 @@ on:
   pull_request:
   push:
     branches: [main]
+  workflow_dispatch:
 
 jobs:
   build:
@@ -19,3 +20,18 @@ jobs:
       - run: npm ci
       - run: npm run lint
       - run: npm run build
+
+      # ZIP nur bei Push auf main oder manuellem Start, nicht bei Pull Requests
+      - name: ZIP erstellen
+        if: github.event_name != 'pull_request'
+        run: |
+          cd dist
+          zip -r ../rote-mappe-build.zip .
+
+      - name: Artifact hochladen
+        if: github.event_name != 'pull_request'
+        uses: actions/upload-artifact@v4
+        with:
+          name: rote-mappe-build
+          path: rote-mappe-build.zip
+          retention-days: 1
